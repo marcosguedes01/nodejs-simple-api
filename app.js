@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 3000;
 
-const db = mongoose.connect('mongodb://localhost:27017/DbTest')
+mongoose.connect('mongodb://localhost:27017/DbTest');
 
 const Book = require('./models/bookModel');
 const bookRouter = require('./routes/bookRouter')(Book);

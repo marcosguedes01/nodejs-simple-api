@@ -5,6 +5,7 @@ module.exports = {
         "no-console": ["error", { 
             allow: ["log", "warn", "error"] 
         }],
-        "comma-dangle": 0
+        "comma-dangle": 0,
+        "no-underscore-dangle": "off"
     }
 };
