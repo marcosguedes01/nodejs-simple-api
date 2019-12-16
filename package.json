@@ -11,7 +11,9 @@
   "author": "Marcos Guedes",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "mongoose": "^5.8.1",
     "nodemon": "^2.0.2"
   },
   "devDependencies": {
@@ -22,13 +24,13 @@
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^1.7.0"
   },
-  "nodemonConfig":{
+  "nodemonConfig": {
     "restartable": "rs",
     "ignore": [
       "node_modules/**/node_modules"
     ],
     "delay": "2500",
-    "env":{
+    "env": {
       "NODE_ENV": "development",
       "PORT": 4000
     }
