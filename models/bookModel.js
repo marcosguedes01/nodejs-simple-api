@@ -12,7 +12,7 @@ const Book = new Schema(
     imageLink: { type: String },
     language: { type: String },
     link: { type: String },
-    pages: { type: Number },    
+    pages: { type: Number },
     year: { type: Number },
   }
 );

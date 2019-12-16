@@ -1,32 +1,17 @@
 const express = require('express');
+const booksController = require('../controllers/booksController');
 
-function routes(Book){
+function routes(Book) {
   const bookRouter = express.Router();
+  const controller = booksController(Book);
 
   bookRouter.route('/books')
-    .post((req, res) => {
-      const book = new Book(req.body);
-
-      book.save((err) => {
-        if (err){
-          return res.send(err);
-        }
-        return res.status(201).json(book);
-      });
-    })
-    .get((req, res) => {
-      const { query } = req;
-      Book.find(query, (err, books) => {
-        if (err) {
-          return res.send(err);
-        }
-        return res.json(books);
-      })
-    });
+    .post(controller.post)
+    .get(controller.get);
 
   bookRouter.use('/books/:bookId', (req, res, next) => {
     Book.findById(req.params.bookId, (err, book) => {
-      if (err){
+      if (err) {
         return res.send(err);
       }
       if (book) {
@@ -45,13 +30,13 @@ function routes(Book){
       book.read = req.body.read;
       book.author = req.body.author;
       book.country = req.body.country;
-      book.language = req.body.language
+      book.language = req.body.language;
       book.pages = req.body.pages;
       book.title = req.body.title;
       book.year = req.body.year;
 
       req.book.save((err) => {
-        if (err){
+        if (err) {
           return res.send(err);
         }
         return res.json(book);
@@ -59,7 +44,7 @@ function routes(Book){
     })
     .patch((req, res) => {
       const { book } = req;
-      if (req.body._id){
+      if (req.body._id) {
         delete req.body._id;
       }
 
@@ -70,7 +55,7 @@ function routes(Book){
         book[key] = value;
       });
       req.book.save((err) => {
-        if (err){
+        if (err) {
           return res.send(err);
         }
         return res.json(book);
@@ -82,7 +67,7 @@ function routes(Book){
           return res.send(err);
         }
         return res.sendStatus(204);
-      })
+      });
     });
 
   return bookRouter;
