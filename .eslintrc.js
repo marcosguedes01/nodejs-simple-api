@@ -1,11 +1,12 @@
 module.exports = {
     "extends": "airbnb",
-    rules: {
+    "rules": {
         "linebreak-style": ["error", "windows"],
         "no-console": ["error", { 
-            allow: ["log", "warn", "error"] 
+            "allow": ["log", "warn", "error"] 
         }],
         "comma-dangle": 0,
         "no-underscore-dangle": "off"
-    }
+    },
+    "env": { "node": true, "mocha": true }
 };
