@@ -8,5 +8,6 @@ module.exports = {
         "comma-dangle": 0,
         "no-underscore-dangle": "off"
     },
-    "env": { "node": true, "mocha": true }
+    "env": { "node": true, "mocha": true },
+    "ignorePatterns": ["tests/"],
 };
