@@ -1,6 +1,10 @@
 const express = require('express');
 const booksController = require('../controllers/booksController');
 
+function replaceAll(str, find, replace) {
+  return str.replace(new RegExp(find, 'g'), replace);
+}
+
 function routes(Book) {
   const bookRouter = express.Router();
   const controller = booksController(Book);
@@ -23,7 +27,14 @@ function routes(Book) {
   });
 
   bookRouter.route('/books/:bookId')
-    .get((req, res) => res.send(req.book))
+    .get((req, res) => {
+      const returnBook = req.book.toJSON();
+
+      returnBook.links = {};
+      const country = replaceAll(req.book.country, ' ', '%20');
+      returnBook.links.filterByThisCountry = `http://${req.headers.host}/api/books/?country=${country}`;
+      res.send(returnBook);
+    })
     .put((req, res) => {
       const { book } = req;
 
